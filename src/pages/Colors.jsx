@@ -536,14 +536,14 @@ function ColorBlock({ color }) {
                 <span className="font-mono text-sm break-all text-center">{color}</span>
                 <AnimatePresence>
                     {copied ? (
-                        <motion.span
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            className="text-xs"
+                        <motion.div
+                            initial={{ opacity: 0, y: 10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            className="flex flex-col items-center gap-1"
                         >
-                            Copied!
-                        </motion.span>
+                            <FaCheck size={20} className="text-green-400" />
+                        </motion.div>
                     ) : (
                         <FaRegCopy size={18} />
                     )}
@@ -603,7 +603,6 @@ function ColorPalette({ colors }) {
                                         className="flex flex-col items-center gap-1"
                                     >
                                         <FaCheck size={20} className="text-green-400" />
-                                        <span className="text-xs">Copied!</span>
                                     </motion.div>
                                 ) : (
                                     <FaRegCopy size={20} />
