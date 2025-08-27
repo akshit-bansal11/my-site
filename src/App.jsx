@@ -54,7 +54,7 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
-        <Route path={`/${import.meta.env.VITE_PRIVATE_URL}/colors`} element={<Colors />} />
+        <Route path="/colors" element={<Colors />} />
       </Routes>
     </motion.div>
   );

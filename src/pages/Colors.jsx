@@ -14,7 +14,13 @@ import { motion, AnimatePresence } from "framer-motion";
 //--------------------|       ICONS        |--------------------//
 
 // Font Awesome 6
-import { FaCheck, FaDroplet, FaPlus, FaRegCopy, FaRegTrashCan, FaLayerGroup } from 'react-icons/fa6'
+import { FaCheck, FaDroplet, FaPlus, FaRegCopy, FaRegTrashCan, FaLayerGroup, FaSpotify, FaAmazon, FaMeta, FaGoogle } from 'react-icons/fa6'
+
+// Simple Icons
+import { SiIkea, SiMcdonalds, SiNetflix, SiStarbucks, SiNvidia, } from "react-icons/si";
+
+// Tabler Icons
+import { TbOlympics } from "react-icons/tb";
 
 // Ionicons 5
 import { IoColorPalette } from "react-icons/io5";
@@ -24,6 +30,7 @@ import { HiMiniSwatch } from "react-icons/hi2";
 
 // Material Design Icons
 import { MdOutlineImageSearch } from "react-icons/md";
+import { icons } from "lucide-react";
 
 
 
@@ -259,28 +266,80 @@ const colors = [
 
 // Palettes
 const palettes = [
-    { colors: ["#272727", "#484848", "#ffb900", "#009eff", "#d7d7d7"] },
-    { colors: ["#2c3e50", "#3498db", "#ecf0f1", "#95a5a6"] },
-    { colors: ["#e74c3c", "#f39c12", "#f1c40f"] },
-    { colors: ["#16a085", "#27ae60", "#2ecc71", "#34495e"] },
-    { colors: ["#d35400", "#c0392b", "#bdc3c7", "#7f8c8d"] },
-    { colors: ["#f0932b", "#eb4d4b", "#6ab04c", "#4834d4", "#30336b"] },
-    { colors: ["#a29bfe", "#ffeaa7", "#fab1a0", "#74b9ff", "#55efc4"] }
+
+    // Popular Brands
+    { name: "Spotify", Icon: FaSpotify, colors: ["#1EDD60", "#1B1716"], category: "Popular Brands" },
+    { name: "IKEA", Icon: SiIkea, colors: ["#0058A3", "#FFDB00"], category: "Popular Brands" },
+    { name: "Amazon", Icon: FaAmazon, colors: ["#FF6201", "#171D27"], category: "Popular Brands" },
+    { name: "McDonalds", Icon: SiMcdonalds, colors: ["#DB0007", "#FFBC0D"], category: "Popular Brands" },
+    { name: "Netflix", Icon: SiNetflix, colors: ["#B1060F", "#E50914", "#000000"], category: "Popular Brands" },
+    { name: "Starbucks", Icon: SiStarbucks, colors: ["#006341", "#000000", "#FFFFFF"], category: "Popular Brands" },
+    { name: "nVidia", Icon: SiNvidia, colors: ["#517C00", "#75B600", "#000000"], category: "Popular Brands" },
+    { name: "Meta", Icon: FaMeta, colors: ["#0265E0", "#0080F9", "#1C2B33"], category: "Popular Brands" },
+    { name: "Google", Icon: FaGoogle, colors: ["#4285F4", "#EA4335", "#FBBC05", "#34A853"], category: "Popular Brands" },
+    { name: "Olympics", Icon: TbOlympics, colors: ["#0081C8", "#000000", "#DF3D59", "#F0BA6A", "#00A651"], category: "Popular Brands" },
+
+    // 3-Color
+    { colors: ["#e74c3c", "#f39c12", "#f1c40f"], category: "3-color" },
+    { colors: ["#e74c3c", "#f39c12", "#f1c40f"], category: "3-color" },
+    { colors: ["#10367D", "#EBEBEB", "#74B4D9"], category: "3-color" },
+    { colors: ["#05614B", "#020E0E", "#01DE82"], category: "3-color" },
+    { colors: ["#FD0D02", "#FEA603", "#4D6802"], category: "3-color" },
+    { colors: ["#0C0E0B", "#D6E7F3", "#D6303A"], category: "3-color" },
+
+    // 4-Color
+    { colors: ["#2c3e50", "#3498db", "#ecf0f1", "#95a5a6"], category: "4-color" },
+    { colors: ["#16a085", "#27ae60", "#2ecc71", "#34495e"], category: "4-color" },
+    { colors: ["#d35400", "#c0392b", "#bdc3c7", "#7f8c8d"], category: "4-color" },
+
+    // 5-Color
+    { colors: ["#272727", "#484848", "#ffb900", "#009eff", "#d7d7d7"], category: "5-color" },
+    { colors: ["#f0932b", "#eb4d4b", "#6ab04c", "#4834d4", "#30336b"], category: "5-color" },
+    { colors: ["#a29bfe", "#ffeaa7", "#fab1a0", "#74b9ff", "#55efc4"], category: "5-color" }
 ];
 
 // Gradients
 const gradients = [
-    { name: "Oceanic", type: "2-color tailwind", feel: "cool", gradient: "from-blue-500 to-green-400" },
-    { name: "Sunset", type: "3-color tailwind", feel: "warm", gradient: "from-red-500 via-yellow-500 to-pink-500" },
-    { name: "Royal", type: "multi-color css", feel: "luxury", gradient: "linear-gradient(to right, #8e2de2, #4a00e0)" },
-    { name: "Summer Dog", type: "2-color tailwind", feel: "summer", gradient: "from-yellow-200 to-yellow-500" },
-    { name: "Mint", type: "3-color tailwind", feel: "cool", gradient: "from-green-200 via-green-300 to-blue-500" },
-    { name: "Classy", type: "multi-color css", feel: "classy", gradient: "linear-gradient(to right, #0f2027, #203a43, #2c5364)" },
-    { name: "Vibrant", type: "2-color tailwind", feel: "summer", gradient: "from-pink-500 to-yellow-500" },
-    { name: "Deep Space", type: "3-color tailwind", feel: "cool", gradient: "from-gray-700 via-gray-900 to-black" },
-    { name: "Cherry", type: "multi-color css", feel: "warm", gradient: "linear-gradient(to right, #eb3349, #f45c43)" },
+
+    // 2-color Tailwind
+    { name: "Ocean Sunset", type: "2-color tailwind", feel: "luxury", gradient: "from-[#0f2027] to-[#2c5364]" },
+    { name: "Midnight Glow", type: "2-color tailwind", feel: "luxury", gradient: "from-[#141e30] to-[#243b55]" },
+    { name: "Crimson Velvet", type: "2-color tailwind", feel: "luxury", gradient: "from-[#2C0F12] to-[#6B1E23]" },
+    { name: "Navy Mirage", type: "2-color tailwind", feel: "luxury", gradient: "from-[#141E30] to-[#35577D]" },
+    { name: "Deep Teal Silk", type: "2-color tailwind", feel: "luxury", gradient: "from-[#0B3037] to-[#134E5E]" },
+    { name: "Obsidian Plum", type: "2-color tailwind", feel: "luxury", gradient: "from-[#2D1E2F] to-[#4E2A4F]" },
+    { name: "Emerald Depth", type: "2-color tailwind", feel: "luxury", gradient: "from-[#0F2027] to-[#28623A]" },
+    { name: "Walnut Noir", type: "2-color tailwind", feel: "luxury", gradient: "from-[#2E1F1B] to-[#5E4B43]" },
+    { name: "Charcoal Steel", type: "2-color tailwind", feel: "luxury", gradient: "from-[#232526] to-[#414345]" },
+    { name: "Onyx Silver", type: "2-color tailwind", feel: "luxury", gradient: "from-[#232526] to-[#757F9A]" },
+    { name: "Emerald Chrome", type: "2-color tailwind", feel: "luxury", gradient: "from-[#004E92] to-[#000428]" },
+    { name: "Imperial Purple", type: "2-color tailwind", feel: "luxury", gradient: "from-[#2E003E] to-[#6A0572]" },
+    { name: "Velvet Smoke", type: "2-color tailwind", feel: "classy", gradient: "from-[#ada996] to-[#f2f2f2]" },
+    { name: "Midnight Gold", type: "2-color tailwind", feel: "classy", gradient: "from-[#1A1A1A] to-[#C0A062]" },
+    { name: "Royal Bronze", type: "2-color tailwind", feel: "classy", gradient: "from-[#2C3E50] to-[#B08D57]" },
     { name: "Lush", type: "2-color tailwind", feel: "classy", gradient: "from-teal-400 to-emerald-600" },
+    { name: "Royal Aurora", type: "2-color tailwind", feel: "vivid", gradient: "from-[#3e2f5b] to-[#e94560]" },
+    { name: "Sunset Glow", type: "2-color tailwind", feel: "vivid", gradient: "from-[#FF5450] to-[#AB0062]" },
+    { name: "Misty Harbor", type: "2-color tailwind", feel: "vivid", gradient: "from-[#133E57] to-[#B8D1C5]" },
+    { name: "Electric Lime", type: "2-color tailwind", feel: "vivid", gradient: "from-[#FEF500] to-[#00A800]" },
+    { name: "Twilight Lavender", type: "2-color tailwind", feel: "vivid", gradient: "from-[#262D57] to-[#A89FC8]" },
+    { name: "Slate Emerald", type: "2-color tailwind", feel: "vivid", gradient: "from-[#134E5E] to-[#71B280]" },
+    { name: "Vintage Wine", type: "2-color tailwind", feel: "vivid", gradient: "from-[#842A50] to-[#D17B68]" },
+    { name: "Summer Dog", type: "2-color tailwind", feel: "summer", gradient: "from-yellow-200 to-yellow-500" },
+    { name: "Vibrant", type: "2-color tailwind", feel: "summer", gradient: "from-pink-500 to-yellow-500" },
+    { name: "Champagne Blush", type: "2-color tailwind", feel: "warm", gradient: "from-[#fcfabb] to-[#f8b500]" },
+    { name: "Neo Future", type: "2-color tailwind", feel: "cool", gradient: "from-[#00c9ff] to-[#92fe9d]" },
+
+    // 3-color Tailwind
+    { name: "Sunset", type: "3-color tailwind", feel: "warm", gradient: "from-red-500 via-yellow-500 to-pink-500" },
+    { name: "Mint", type: "3-color tailwind", feel: "cool", gradient: "from-green-200 via-green-300 to-blue-500" },
+    { name: "Deep Space", type: "3-color tailwind", feel: "cool", gradient: "from-gray-700 via-gray-900 to-black" },
     { name: "Amethyst", type: "3-color tailwind", feel: "luxury", gradient: "from-purple-800 via-violet-900 to-purple-800" },
+
+    // Multi-Color CSS
+    { name: "Royal", type: "multi-color css", feel: "luxury", gradient: "linear-gradient(to right, #8e2de2, #4a00e0)" },
+    { name: "Classy", type: "multi-color css", feel: "classy", gradient: "linear-gradient(to right, #0f2027, #203a43, #2c5364)" },
+    { name: "Cherry", type: "multi-color css", feel: "warm", gradient: "linear-gradient(to right, #eb3349, #f45c43)" },
     { name: "Morning", type: "multi-color css", feel: "warm", gradient: "linear-gradient(to right, #ff5f6d, #ffc371)" },
 ];
 
@@ -569,7 +628,7 @@ function ColorBlocksBrowser() {
 }
 
 // Component: Palette
-function ColorPalette({ colors }) {
+function ColorPalette({ colors, name, Icon }) {
     const [copied, copy] = useCopyToClipboard();
     const [copiedColor, setCopiedColor] = useState(null);
 
@@ -612,10 +671,17 @@ function ColorPalette({ colors }) {
                     </div>
                 ))}
             </div>
-            <div className="p-3 flex flex-wrap gap-x-3 gap-y-1 justify-center bg-neutral-800">
-                {colors.map((color, index) => (
-                    <span key={index} className="text-xs font-mono text-neutral-400">{color}</span>
-                ))}
+            <div className="p-3 flex flex-col items-center gap-2 bg-neutral-800">
+                <div className="flex gap-2 items-center mb-4 mt-4">
+                    {Icon && <Icon className="h-8 w-8 text-neutral-200" />}
+                    {name && <p className="flex gap-10 text-sm font-semibold text-neutral-200">{name}</p>}
+                </div>
+
+                <div className="flex flex-wrap gap-x-3 gap-y-1 justify-center">
+                    {colors.map((color, index) => (
+                        <span key={index} className="text-xs font-mono text-neutral-400">{color}</span>
+                    ))}
+                </div>
             </div>
         </motion.div>
     );
@@ -623,10 +689,39 @@ function ColorPalette({ colors }) {
 
 // Component: CuratedPalettes
 function CuratedPalettes() {
+    // 1. Group palettes by their category
+    const groupedPalettes = palettes.reduce((acc, palette) => {
+        const { category } = palette;
+        // If the category key doesn't exist in the accumulator, create it
+        if (!acc[category]) {
+            acc[category] = [];
+        }
+        // Push the current palette into its category array
+        acc[category].push(palette);
+        return acc;
+    }, {});
+
+    // Optional: Define a specific order for the categories
+    const categoryOrder = ["Popular Brands", "2-color", "3-color", "4-color", "5-color"];
+    const sortedCategories = categoryOrder.filter(cat => groupedPalettes[cat]);
+
     return (
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {palettes.map((palette, index) => (
-                <ColorPalette key={index} {...palette} />
+        <div className="w-full flex flex-col gap-12">
+            {/* 2. Map over the sorted categories to create sections */}
+            {sortedCategories.map(category => (
+                <section key={category} className="flex flex-col gap-6">
+                    {/* Section Title */}
+                    <h2 className="text-2xl font-bold text-neutral-200 capitalize border-b border-neutral-700 pb-2">
+                        {category === "Popular Brands" ? category : `${category} Palettes`}
+                    </h2>
+
+                    {/* Grid for the palettes in this category */}
+                    <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                        {groupedPalettes[category].map((palette, index) => (
+                            <ColorPalette key={index} {...palette} />
+                        ))}
+                    </div>
+                </section>
             ))}
         </div>
     );
