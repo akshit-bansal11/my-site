@@ -300,12 +300,35 @@ const palettes = [
 
 // Gradients
 const gradients = [
-
-    // 2-color Tailwind
     { name: "Ocean Sunset", feel: "Luxury", tailwind: "from-[#0f2027] to-[#2c5364]", css: "linear-gradient(to right, #0f2027, #2c5364)" },
     { name: "Midnight Glow", feel: "Luxury", tailwind: "from-[#141e30] to-[#243b55]", css: "linear-gradient(to right, #141e30, #243b55)" },
     { name: "Crimson Velvet", feel: "Luxury", tailwind: "from-[#2C0F12] to-[#6B1E23]", css: "linear-gradient(to right, #2C0F12, #6B1E23)" },
     { name: "Navy Mirage", feel: "Luxury", tailwind: "from-[#141E30] to-[#35577D]", css: "linear-gradient(to right, #141E30, #35577D)" },
+    { name: "Noir Velvet", feel: "Luxury", tailwind: "from-[#414345] to-[#232526]", css: "linear-gradient(to bottom, #414345, #232526)" },
+    { name: "Venom Noir", feel: "Luxury", tailwind: "from-[#485563] to-[#29323C]", css: "linear-gradient(to bottom, #485563, #29323C)" },
+    { name: "Deep Space", feel: "Luxury", tailwind: "from-[#004E92] to-[#0D1452]", css: "linear-gradient(to bottom, #004E92, #0D1452)" },
+    { name: "Crimson Night", feel: "Luxury", tailwind: "from-[#3A1C71] to-[#D76D77]", css: "linear-gradient(to bottom, #3A1C71, #D76D77)" },
+    { name: "Obsidian Glow", feel: "Luxury", tailwind: "from-[#243B55] to-[#141E30]", css: "linear-gradient(to bottom, #243B55, #141E30)" },
+    { name: "Midnight Fuel", feel: "Luxury", tailwind: "from-[#0F0C29] to-[#302B63]", css: "linear-gradient(to right, #0F0C29, #302B63)" },
+    { name: "Phantom Purple", feel: "Luxury", tailwind: "from-[#2B2E4A] to-[#E84545]", css: "linear-gradient(to right, #2B2E4A, #E84545)" },
+    { name: "Garnet Veil", feel: "Luxury", tailwind: "from-[#2B0C0E] via-[#7A2D35] to-[#C46565]", css: "linear-gradient(to right, #2B0C0E, #7A2D35, #C46565)" },
+    { name: "Ivory Forest", feel: "Luxury", tailwind: "from-[#FAF8F5] via-[#C6C0B3] to-[#4C5F4E]", css: "linear-gradient(to right, #FAF8F5, #C6C0B3, #4C5F4E)" },
+    { name: "Twilight Bronze", feel: "Luxury", tailwind: "from-[#1E1E1E] via-[#5D493D] to-[#927A5E]", css: "linear-gradient(to right, #1E1E1E, #5D493D, #927A5E)" },
+    { name: "Platinum Dusk", feel: "Luxury", tailwind: "from-[#1A1C22] via-[#5A5C6A] to-[#A7A8B2]", css: "linear-gradient(to right, #1A1C22, #5A5C6A, #A7A8B2)" },
+    { name: "Almond Slate", feel: "Luxury", tailwind: "from-[#F7F4EF] via-[#CFC8BB] to-[#7A7A7A]", css: "linear-gradient(to right, #F7F4EF, #CFC8BB, #7A7A7A)" },
+    { name: "Lilac Mist", feel: "Luxury", tailwind: "from-[#F4EDFF] via-[#D6C8F4] to-[#BBA3DB]", css: "linear-gradient(to right, #F4EDFF, #D6C8F4, #BBA3DB)" },
+    { name: "Jade Silk", feel: "Luxury", tailwind: "from-[#F0F4ED] via-[#BFD8C1] to-[#4E7E5D]", css: "linear-gradient(to right, #F0F4ED, #BFD8C1, #4E7E5D)" },
+    { name: "Champagne Olive", feel: "Luxury", tailwind: "from-[#FDF7EF] via-[#D4C6AD] to-[#7E8052]", css: "linear-gradient(to right, #FDF7EF, #D4C6AD, #7E8052)" },
+    { name: "Ivory Smoke", feel: "Luxury", tailwind: "from-[#FAF9F6] via-[#DCD7CE] to-[#ACA69A]", css: "linear-gradient(to right, #FAF9F6, #DCD7CE, #ACA69A)" },
+    { name: "Lavender Cashmere", feel: "Luxury", tailwind: "from-[#EDE4F0] via-[#CBB4D4] to-[#A88BC1]", css: "linear-gradient(to right, #EDE4F0, #CBB4D4, #A88BC1)" },
+    { name: "Metallic Gold Dust", feel: "Luxury", tailwind: "from-[#3D342F] via-[#A68A64] to-[#F8E3B4]", css: "linear-gradient(to right, #3D342F, #A68A64, #F8E3B4)" },
+    { name: "Olive Luxe", feel: "Luxury", tailwind: "from-[#38362E] via-[#807A5C] to-[#DCD6C1]", css: "linear-gradient(to right, #38362E, #807A5C, #DCD6C1)" },
+    { name: "Sapphire Nightfall", feel: "Luxury", tailwind: "from-[#0B0F2B] via-[#2F4B80] to-[#6078A4]", css: "linear-gradient(to right, #0B0F2B, #2F4B80, #6078A4)" },
+    { name: "Royal Eclipse", feel: "Luxury", tailwind: "from-[#42275A] to-[#734B6C]", css: "linear-gradient(to bottom, #42275A, #734B6C)" },
+    { name: "Platinum Smoke", feel: "Luxury", tailwind: "from-[#3C3B3F] to-[#605C3C]", css: "linear-gradient(to bottom, #3C3B3F, #605C3C)" },
+    { name: "Dark Ember", feel: "Luxury", tailwind: "from-[#1F1C2C] to-[#928DAB]", css: "linear-gradient(to bottom, #1F1C2C, #928DAB)" },
+    { name: "Emerald Dusk", feel: "Luxury", tailwind: "from-[#0F2027] to-[#2C5364]", css: "linear-gradient(to bottom, #0F2027, #2C5364)" },
+    { name: "Carbon Pulse", feel: "Luxury", tailwind: "from-[#1E130C] to-[#9A8478]", css: "linear-gradient(to bottom, #1E130C, #9A8478)" },
     { name: "Deep Teal Silk", feel: "Luxury", tailwind: "from-[#0B3037] to-[#134E5E]", css: "linear-gradient(to right, #0B3037, #134E5E)" },
     { name: "Obsidian Plum", feel: "Luxury", tailwind: "from-[#2D1E2F] to-[#4E2A4F]", css: "linear-gradient(to right, #2D1E2F, #4E2A4F)" },
     { name: "Emerald Depth", feel: "Luxury", tailwind: "from-[#0F2027] to-[#28623A]", css: "linear-gradient(to right, #0F2027, #28623A)" },
@@ -329,14 +352,10 @@ const gradients = [
     { name: "Vibrant", feel: "Summer", tailwind: "from-pink-500 to-yellow-500", css: "linear-gradient(to right, #ec4899, #eab308)" },
     { name: "Champagne Blush", feel: "Warm", tailwind: "from-[#fcfabb] to-[#f8b500]", css: "linear-gradient(to right, #fcfabb, #f8b500)" },
     { name: "Neo Future", feel: "Cool", tailwind: "from-[#00c9ff] to-[#92fe9d]", css: "linear-gradient(to right, #00c9ff, #92fe9d)" },
-
-    // 3-color Tailwind
     { name: "Sunset", feel: "Warm", tailwind: "from-red-500 via-yellow-500 to-pink-500", css: "linear-gradient(to right, , )" },
     { name: "Mint", feel: "Cool", tailwind: "from-green-200 via-green-300 to-blue-500", css: "linear-gradient(to right, , )" },
     { name: "Deep Space", feel: "Cool", tailwind: "from-gray-700 via-gray-900 to-black", css: "linear-gradient(to right, , )" },
     { name: "Amethyst", feel: "Luxury", tailwind: "from-purple-800 via-violet-900 to-purple-800", css: "linear-gradient(to right, , )" },
-
-    // Multi-Color CSS
     { name: "Royal", feel: "Luxury", css: "linear-gradient(to right, #8e2de2, #4a00e0)" },
     { name: "Classy", feel: "Classy", css: "linear-gradient(to right, #0f2027, #203a43, #2c5364)" },
     { name: "Cherry", feel: "Warm", css: "linear-gradient(to right, #eb3349, #f45c43)" },
