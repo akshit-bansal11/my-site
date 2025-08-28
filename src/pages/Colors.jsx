@@ -1,7 +1,7 @@
 //--------------------|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|--------------------//
 //--------------------|    DEPENDENCIES    |--------------------//
 //--------------------|____________________|--------------------//
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
 import { HexAlphaColorPicker } from "react-colorful";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -302,45 +302,45 @@ const palettes = [
 const gradients = [
 
     // 2-color Tailwind
-    { name: "Ocean Sunset", type: "2-color tailwind", feel: "luxury", gradient: "from-[#0f2027] to-[#2c5364]" },
-    { name: "Midnight Glow", type: "2-color tailwind", feel: "luxury", gradient: "from-[#141e30] to-[#243b55]" },
-    { name: "Crimson Velvet", type: "2-color tailwind", feel: "luxury", gradient: "from-[#2C0F12] to-[#6B1E23]" },
-    { name: "Navy Mirage", type: "2-color tailwind", feel: "luxury", gradient: "from-[#141E30] to-[#35577D]" },
-    { name: "Deep Teal Silk", type: "2-color tailwind", feel: "luxury", gradient: "from-[#0B3037] to-[#134E5E]" },
-    { name: "Obsidian Plum", type: "2-color tailwind", feel: "luxury", gradient: "from-[#2D1E2F] to-[#4E2A4F]" },
-    { name: "Emerald Depth", type: "2-color tailwind", feel: "luxury", gradient: "from-[#0F2027] to-[#28623A]" },
-    { name: "Walnut Noir", type: "2-color tailwind", feel: "luxury", gradient: "from-[#2E1F1B] to-[#5E4B43]" },
-    { name: "Charcoal Steel", type: "2-color tailwind", feel: "luxury", gradient: "from-[#232526] to-[#414345]" },
-    { name: "Onyx Silver", type: "2-color tailwind", feel: "luxury", gradient: "from-[#232526] to-[#757F9A]" },
-    { name: "Emerald Chrome", type: "2-color tailwind", feel: "luxury", gradient: "from-[#004E92] to-[#000428]" },
-    { name: "Imperial Purple", type: "2-color tailwind", feel: "luxury", gradient: "from-[#2E003E] to-[#6A0572]" },
-    { name: "Velvet Smoke", type: "2-color tailwind", feel: "classy", gradient: "from-[#ada996] to-[#f2f2f2]" },
-    { name: "Midnight Gold", type: "2-color tailwind", feel: "classy", gradient: "from-[#1A1A1A] to-[#C0A062]" },
-    { name: "Royal Bronze", type: "2-color tailwind", feel: "classy", gradient: "from-[#2C3E50] to-[#B08D57]" },
-    { name: "Lush", type: "2-color tailwind", feel: "classy", gradient: "from-teal-400 to-emerald-600" },
-    { name: "Royal Aurora", type: "2-color tailwind", feel: "vivid", gradient: "from-[#3e2f5b] to-[#e94560]" },
-    { name: "Sunset Glow", type: "2-color tailwind", feel: "vivid", gradient: "from-[#FF5450] to-[#AB0062]" },
-    { name: "Misty Harbor", type: "2-color tailwind", feel: "vivid", gradient: "from-[#133E57] to-[#B8D1C5]" },
-    { name: "Electric Lime", type: "2-color tailwind", feel: "vivid", gradient: "from-[#FEF500] to-[#00A800]" },
-    { name: "Twilight Lavender", type: "2-color tailwind", feel: "vivid", gradient: "from-[#262D57] to-[#A89FC8]" },
-    { name: "Slate Emerald", type: "2-color tailwind", feel: "vivid", gradient: "from-[#134E5E] to-[#71B280]" },
-    { name: "Vintage Wine", type: "2-color tailwind", feel: "vivid", gradient: "from-[#842A50] to-[#D17B68]" },
-    { name: "Summer Dog", type: "2-color tailwind", feel: "summer", gradient: "from-yellow-200 to-yellow-500" },
-    { name: "Vibrant", type: "2-color tailwind", feel: "summer", gradient: "from-pink-500 to-yellow-500" },
-    { name: "Champagne Blush", type: "2-color tailwind", feel: "warm", gradient: "from-[#fcfabb] to-[#f8b500]" },
-    { name: "Neo Future", type: "2-color tailwind", feel: "cool", gradient: "from-[#00c9ff] to-[#92fe9d]" },
+    { name: "Ocean Sunset", feel: "Luxury", tailwind: "from-[#0f2027] to-[#2c5364]", css: "linear-gradient(to right, #0f2027, #2c5364)" },
+    { name: "Midnight Glow", feel: "Luxury", tailwind: "from-[#141e30] to-[#243b55]", css: "linear-gradient(to right, #141e30, #243b55)" },
+    { name: "Crimson Velvet", feel: "Luxury", tailwind: "from-[#2C0F12] to-[#6B1E23]", css: "linear-gradient(to right, #2C0F12, #6B1E23)" },
+    { name: "Navy Mirage", feel: "Luxury", tailwind: "from-[#141E30] to-[#35577D]", css: "linear-gradient(to right, #141E30, #35577D)" },
+    { name: "Deep Teal Silk", feel: "Luxury", tailwind: "from-[#0B3037] to-[#134E5E]", css: "linear-gradient(to right, #0B3037, #134E5E)" },
+    { name: "Obsidian Plum", feel: "Luxury", tailwind: "from-[#2D1E2F] to-[#4E2A4F]", css: "linear-gradient(to right, #2D1E2F, #4E2A4F)" },
+    { name: "Emerald Depth", feel: "Luxury", tailwind: "from-[#0F2027] to-[#28623A]", css: "linear-gradient(to right, #0F2027, #28623A)" },
+    { name: "Walnut Noir", feel: "Luxury", tailwind: "from-[#2E1F1B] to-[#5E4B43]", css: "linear-gradient(to right, #2E1F1B, #5E4B43)" },
+    { name: "Charcoal Steel", feel: "Luxury", tailwind: "from-[#232526] to-[#414345]", css: "linear-gradient(to right, #232526, #414345)" },
+    { name: "Onyx Silver", feel: "Luxury", tailwind: "from-[#232526] to-[#757F9A]", css: "linear-gradient(to right, #232526, #757F9A)" },
+    { name: "Emerald Chrome", feel: "Luxury", tailwind: "from-[#004E92] to-[#000428]", css: "linear-gradient(to right, #004E92, #000428)" },
+    { name: "Imperial Purple", feel: "Luxury", tailwind: "from-[#2E003E] to-[#6A0572]", css: "linear-gradient(to right, #2E003E, #6A0572)" },
+    { name: "Velvet Smoke", feel: "Classy", tailwind: "from-[#ada996] to-[#f2f2f2]", css: "linear-gradient(to right, #ada996, #f2f2f2)" },
+    { name: "Midnight Gold", feel: "Classy", tailwind: "from-[#1A1A1A] to-[#C0A062]", css: "linear-gradient(to right, #1A1A1A, #C0A062)" },
+    { name: "Royal Bronze", feel: "Classy", tailwind: "from-[#2C3E50] to-[#B08D57]", css: "linear-gradient(to right, #2C3E50, #B08D57)" },
+    { name: "Lush", feel: "Classy", tailwind: "from-teal-400 to-emerald-600", css: "linear-gradient(to right, #2dd4bf, #059669)" },
+    { name: "Royal Aurora", feel: "Vivid", tailwind: "from-[#3e2f5b] to-[#e94560]", css: "linear-gradient(to right, #3e2f5b, #e94560)" },
+    { name: "Sunset Glow", feel: "Vivid", tailwind: "from-[#FF5450] to-[#AB0062]", css: "linear-gradient(to right, #FF5450, #AB0062)" },
+    { name: "Misty Harbor", feel: "Vivid", tailwind: "from-[#133E57] to-[#B8D1C5]", css: "linear-gradient(to right, #133E57, #B8D1C5)" },
+    { name: "Electric Lime", feel: "Vivid", tailwind: "from-[#FEF500] to-[#00A800]", css: "linear-gradient(to right, #FEF500, #00A800)" },
+    { name: "Twilight Lavender", feel: "Vivid", tailwind: "from-[#262D57] to-[#A89FC8]", css: "linear-gradient(to right, #262D57, #A89FC8)" },
+    { name: "Slate Emerald", feel: "Vivid", tailwind: "from-[#134E5E] to-[#71B280]", css: "linear-gradient(to right, #134E5E, #71B280)" },
+    { name: "Vintage Wine", feel: "Vivid", tailwind: "from-[#842A50] to-[#D17B68]", css: "linear-gradient(to right, #842A50, #D17B68)" },
+    { name: "Summer Dog", feel: "Summer", tailwind: "from-yellow-200 to-yellow-500", css: "linear-gradient(to right, #fef08a, #eab308)" },
+    { name: "Vibrant", feel: "Summer", tailwind: "from-pink-500 to-yellow-500", css: "linear-gradient(to right, #ec4899, #eab308)" },
+    { name: "Champagne Blush", feel: "Warm", tailwind: "from-[#fcfabb] to-[#f8b500]", css: "linear-gradient(to right, #fcfabb, #f8b500)" },
+    { name: "Neo Future", feel: "Cool", tailwind: "from-[#00c9ff] to-[#92fe9d]", css: "linear-gradient(to right, #00c9ff, #92fe9d)" },
 
     // 3-color Tailwind
-    { name: "Sunset", type: "3-color tailwind", feel: "warm", gradient: "from-red-500 via-yellow-500 to-pink-500" },
-    { name: "Mint", type: "3-color tailwind", feel: "cool", gradient: "from-green-200 via-green-300 to-blue-500" },
-    { name: "Deep Space", type: "3-color tailwind", feel: "cool", gradient: "from-gray-700 via-gray-900 to-black" },
-    { name: "Amethyst", type: "3-color tailwind", feel: "luxury", gradient: "from-purple-800 via-violet-900 to-purple-800" },
+    { name: "Sunset", feel: "Warm", tailwind: "from-red-500 via-yellow-500 to-pink-500", css: "linear-gradient(to right, , )" },
+    { name: "Mint", feel: "Cool", tailwind: "from-green-200 via-green-300 to-blue-500", css: "linear-gradient(to right, , )" },
+    { name: "Deep Space", feel: "Cool", tailwind: "from-gray-700 via-gray-900 to-black", css: "linear-gradient(to right, , )" },
+    { name: "Amethyst", feel: "Luxury", tailwind: "from-purple-800 via-violet-900 to-purple-800", css: "linear-gradient(to right, , )" },
 
     // Multi-Color CSS
-    { name: "Royal", type: "multi-color css", feel: "luxury", gradient: "linear-gradient(to right, #8e2de2, #4a00e0)" },
-    { name: "Classy", type: "multi-color css", feel: "classy", gradient: "linear-gradient(to right, #0f2027, #203a43, #2c5364)" },
-    { name: "Cherry", type: "multi-color css", feel: "warm", gradient: "linear-gradient(to right, #eb3349, #f45c43)" },
-    { name: "Morning", type: "multi-color css", feel: "warm", gradient: "linear-gradient(to right, #ff5f6d, #ffc371)" },
+    { name: "Royal", feel: "Luxury", css: "linear-gradient(to right, #8e2de2, #4a00e0)" },
+    { name: "Classy", feel: "Classy", css: "linear-gradient(to right, #0f2027, #203a43, #2c5364)" },
+    { name: "Cherry", feel: "Warm", css: "linear-gradient(to right, #eb3349, #f45c43)" },
+    { name: "Morning", feel: "Warm", css: "linear-gradient(to right, #ff5f6d, #ffc371)" },
 ];
 
 
@@ -728,40 +728,142 @@ function CuratedPalettes() {
 }
 
 // Component: GradientCard
-function GradientCard({ name, type, feel, gradient }) {
+function GradientCard({ name, feel, tailwind, css }) {
     const [copied, copy] = useCopyToClipboard();
-    const isTailwind = type.includes('tailwind');
-    const gradientValue = isTailwind ? gradient : gradient;
+    const [copiedKey, setCopiedKey] = useState(null); // tracks which text was copied
+    const timerRef = useRef(null);
+
+    useEffect(() => {
+        return () => {
+            if (timerRef.current) clearTimeout(timerRef.current);
+        };
+    }, []);
+
+    const handleCopy = (text) => {
+        copy(text);
+        setCopiedKey(text);
+
+        if (timerRef.current) clearTimeout(timerRef.current);
+        timerRef.current = setTimeout(() => setCopiedKey(null), 1500);
+    };
+
+    const entry = { opacity: 0, scale: 0.9, y: 6 };
+    const center = { opacity: 1, scale: 1, y: 0 };
+    const exit = { opacity: 0, scale: 0.9, y: 6 };
+
+    const cardVariants = {
+        initial: { opacity: 0, scale: 0.8 },
+        animate: { opacity: 1, scale: 1 },
+        hover: {},
+    };
+
+    const infoVariants = {
+        initial: { y: "100%" },
+        animate: { y: "100%" },
+        hover: { y: 0 },
+    };
 
     return (
         <motion.div
             layout
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ type: 'tween', stiffness: 260, damping: 20 }}
-            className="w-full flex flex-col rounded-xl overflow-hidden shadow-lg bg-neutral-800/50 border border-neutral-700/80 group"
+            variants={cardVariants}
+            initial="initial"
+            animate="animate"
+            whileHover="hover"
+            transition={{ type: "tween", stiffness: 260, damping: 20 }}
+            className="relative w-full flex flex-col rounded-2xl overflow-hidden shadow-lg bg-neutral-800/50 border border-neutral-700/80 group"
         >
-            <div className={`h-36 w-full ${isTailwind ? `bg-gradient-to-r ${gradient}` : ''}`} style={!isTailwind ? { background: gradient } : {}}></div>
-            <div className="p-4 flex flex-col gap-3">
-                <h3 className="font-bold text-white">{name}</h3>
+            {/* Gradient Preview */}
+            <div
+                className={`h-38 w-full ${tailwind ? `bg-gradient-to-r ${tailwind}` : ""}`}
+                style={!tailwind ? { background: css } : {}}
+            ></div>
+
+            {/* Info Section */}
+            <motion.div
+                variants={infoVariants}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="absolute bottom-0 left-0 w-full h-full backdrop-brightness-50 backdrop-grayscale p-4 flex flex-col justify-between"
+            >
+                <h3 className="lg:text-xl font-extrabold font-chillax text-white">{name}</h3>
+
                 <div className="flex gap-2">
-                    <span className="text-xs bg-neutral-700 text-neutral-300 px-2 py-1 rounded-full">{type}</span>
-                    <span className="text-xs bg-neutral-700 text-neutral-300 px-2 py-1 rounded-full">{feel}</span>
+                    <span className="text-xs bg-neutral-700 text-neutral-300 px-2 py-1 rounded-full">
+                        {feel}
+                    </span>
                 </div>
-                <button
-                    onClick={() => copy(gradientValue)}
-                    className="mt-2 w-full flex items-center justify-center gap-2 bg-neutral-700 hover:bg-neutral-600 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200"
-                >
-                    <AnimatePresence mode="wait">
-                        {copied ? (
-                            <motion.span key="copied" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center gap-2 text-green-400"><FaCheck size={16} /> Copied!</motion.span>
-                        ) : (
-                            <motion.span key="copy" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex items-center gap-2"><FaRegCopy size={16} /> Copy {isTailwind ? 'Classes' : 'CSS'}</motion.span>
-                        )}
-                    </AnimatePresence>
-                </button>
-            </div>
+
+                {/* Copy Buttons */}
+                <div className="mt-2 flex gap-2">
+                    {tailwind && (
+                        <button
+                            onClick={() => handleCopy(tailwind)}
+                            className="flex-1 flex items-center justify-center gap-2 bg-neutral-600/30 hover:bg-neutral-600/70 border border-neutral-600/0 hover:border-neutral-400 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200 relative overflow-hidden"
+                            aria-pressed={copiedKey === tailwind}
+                        >
+                            <AnimatePresence mode="wait" initial={false}>
+                                {copiedKey === tailwind ? (
+                                    <motion.span
+                                        key="copied-tw"
+                                        initial={entry}
+                                        animate={center}
+                                        exit={exit}
+                                        transition={{ duration: 0.15 }}
+                                        className="flex items-center gap-2 text-green-400"
+                                    >
+                                        <FaCheck size={16} />
+                                    </motion.span>
+                                ) : (
+                                    <motion.span
+                                        key="copy-tw"
+                                        initial={entry}
+                                        animate={center}
+                                        exit={exit}
+                                        transition={{ duration: 0.15 }}
+                                        className="flex items-center gap-2"
+                                    >
+                                        <FaRegCopy size={16} /> Tailwind
+                                    </motion.span>
+                                )}
+                            </AnimatePresence>
+                        </button>
+                    )}
+
+                    {css && (
+                        <button
+                            onClick={() => handleCopy(css)}
+                            className="flex-1 flex items-center justify-center gap-2 bg-neutral-600/30 hover:bg-neutral-600/70 border border-neutral-600/0 hover:border-neutral-400 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200 relative overflow-hidden"
+                            aria-pressed={copiedKey === css}
+                        >
+                            <AnimatePresence mode="wait" initial={false}>
+                                {copiedKey === css ? (
+                                    <motion.span
+                                        key="copied-css"
+                                        initial={entry}
+                                        animate={center}
+                                        exit={exit}
+                                        transition={{ duration: 0.15 }}
+                                        className="flex items-center gap-2 text-green-400"
+                                    >
+                                        <FaCheck size={16} />
+                                    </motion.span>
+                                ) : (
+                                    <motion.span
+                                        key="copy-css"
+                                        initial={entry}
+                                        animate={center}
+                                        exit={exit}
+                                        transition={{ duration: 0.15 }}
+                                        className="flex items-center gap-2"
+                                    >
+                                        <FaRegCopy size={16} /> CSS
+                                    </motion.span>
+                                )}
+                            </AnimatePresence>
+                        </button>
+                    )}
+                </div>
+            </motion.div>
         </motion.div>
     );
 }
@@ -769,16 +871,16 @@ function GradientCard({ name, type, feel, gradient }) {
 // Component: GradientsBrowser
 function GradientsBrowser() {
     const [searchTerm, setSearchTerm] = useState("");
-    const [typeFilter, setTypeFilter] = useState("all");
-    const [feelFilter, setFeelFilter] = useState("all");
+    const [typeFilter, setTypeFilter] = useState("Top");
+    const [feelFilter, setFeelFilter] = useState("All");
 
-    const types = ["all", ...new Set(gradients.map(g => g.type))];
-    const feels = ["all", ...new Set(gradients.map(g => g.feel))];
+    const types = ["Top", ...new Set(gradients.map(g => g.type))];
+    const feels = ["All", ...new Set(gradients.map(g => g.feel))];
 
     const filteredGradients = gradients.filter(g => {
         const nameMatch = g.name.toLowerCase().includes(searchTerm.toLowerCase());
-        const typeMatch = typeFilter === 'all' || g.type === typeFilter;
-        const feelMatch = feelFilter === 'all' || g.feel === feelFilter;
+        const typeMatch = typeFilter === 'Top' || g.type === typeFilter;
+        const feelMatch = feelFilter === 'All' || g.feel === feelFilter;
         return nameMatch && typeMatch && feelMatch;
     });
 
@@ -792,14 +894,6 @@ function GradientsBrowser() {
                     onChange={(e) => setSearchTerm(e.target.value)}
                     className="w-full md:w-1/3 bg-neutral-800 border border-neutral-700 rounded-lg px-4 py-2 text-white placeholder-neutral-500 focus:outline-none focus:ring-2 focus:ring-blue-500"
                 />
-                <div className="flex items-center gap-2">
-                    <span className="text-neutral-400 text-sm">Type:</span>
-                    <div className="flex gap-2 flex-wrap">
-                        {types.map(type => (
-                            <button key={type} onClick={() => setTypeFilter(type)} className={`px-3 py-1 text-sm rounded-full transition-colors ${typeFilter === type ? 'bg-blue-600 text-white' : 'bg-neutral-700 text-neutral-300 hover:bg-neutral-600'}`}>{type}</button>
-                        ))}
-                    </div>
-                </div>
                 <div className="flex items-center gap-2">
                     <span className="text-neutral-400 text-sm">Feel:</span>
                     <div className="flex gap-2 flex-wrap">
@@ -1004,14 +1098,14 @@ export default function Colors() {
     };
 
     return (
-        <div className="bg-neutral-900 text-white font-sans w-full min-h-screen p-4 sm:p-6 md:p-8">
-            <div className="max-w-6xl mx-auto flex flex-col gap-8 items-center">
+        <div className="text-white font-sans w-full min-h-screen p-4 sm:p-6 md:p-8">
+            <div className="flex flex-col gap-8 items-center">
                 <motion.header
                     initial={{ y: -20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     className="text-center"
                 >
-                    <h1 className="text-4xl md:text-5xl font-bold tracking-tight">Akshit's Color Space</h1>
+                    <h1 className="text-4xl md:text-5xl font-chillax font-extrabold tracking-tight">Akshit's Color Space</h1>
                     <p className="text-neutral-400 mt-2">Your universe for color exploration.</p>
                 </motion.header>
 

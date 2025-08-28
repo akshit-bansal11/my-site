@@ -49,7 +49,8 @@ function AppContent() {
         </div>
       </div>
 
-      <NavBar page={page} />
+      {path === "/" && <NavBar page={page} />}
+      {path === "/projects" && <NavBar page={page} />}
 
       <Routes>
         <Route path="/" element={<Home />} />
