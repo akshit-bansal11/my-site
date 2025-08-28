@@ -294,7 +294,7 @@ const sectionConfigs = [
 // ──────────────────────────────────────────────
 function Projects() {
     return (
-        <div className="w-full h-full flex flex-col items-center gap-25">
+        <div className="w-full lg:px-10 md:px-15 px-5 h-full flex flex-col items-center gap-25">
             {sectionConfigs.map(({ id, heading, layout, dataKey }) => (
                 <ScrollSection id={id} key={id}>
                     <div className="flex w-full gap-2 items-baseline"><ScrollSectionHeading heading={heading} /></div>
