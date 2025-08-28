@@ -14,7 +14,7 @@ import { motion, AnimatePresence } from "framer-motion";
 //--------------------|       ICONS        |--------------------//
 
 // Font Awesome 6
-import { FaCheck, FaDroplet, FaPlus, FaRegCopy, FaRegTrashCan, FaLayerGroup, FaSpotify, FaAmazon, FaMeta, FaGoogle } from 'react-icons/fa6'
+import { FaCheck, FaDroplet, FaPlus, FaRegCopy, FaRegTrashCan, FaLayerGroup, FaSpotify, FaAmazon, FaMeta, FaGoogle, FaArrowsRotate } from 'react-icons/fa6'
 
 // Simple Icons
 import { SiIkea, SiMcdonalds, SiNetflix, SiStarbucks, SiNvidia, } from "react-icons/si";
@@ -487,23 +487,36 @@ function ColorInfo({ color, setColor }) {
 // Component: ColorCreator
 function ColorCreator() {
     const [color, setColor] = useState("#3498dbff");
+    const [secondColor, setSecondColor] = useState("#e74c3cff");
     const [palette, setPalette] = useState([]);
+    const [gradients, setGradients] = useState([]);
     const [copied, copy] = useCopyToClipboard();
-    const [copiedColor, setCopiedColor] = useState(null);
+    const [copiedValue, setCopiedValue] = useState(null);
 
-    const addColorToPalette = () => {
-        if (palette.length < 5 && !palette.includes(color)) {
-            setPalette([...palette, color]);
+    const addColorToPalette = (c) => {
+        if (palette.length < 5 && !palette.includes(c)) {
+            setPalette([...palette, c]);
         }
     };
 
     const removeColorFromPalette = (colorToRemove) => {
-        setPalette(palette.filter(c => c !== colorToRemove));
+        setPalette(palette.filter((c) => c !== colorToRemove));
     };
 
-    const handleCopy = (colorToCopy) => {
-        copy(colorToCopy);
-        setCopiedColor(colorToCopy);
+    const addGradient = () => {
+        const gradient = `linear-gradient(135deg, ${color}, ${secondColor})`;
+        if (!gradients.includes(gradient)) {
+            setGradients([...gradients, gradient]);
+        }
+    };
+
+    const removeGradient = (gradientToRemove) => {
+        setGradients(gradients.filter((g) => g !== gradientToRemove));
+    };
+
+    const handleCopy = (value) => {
+        copy(value);
+        setCopiedValue(value);
     };
 
     return (
@@ -511,69 +524,160 @@ function ColorCreator() {
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="w-full bg-neutral-800/50 border border-neutral-700/80 rounded-2xl lg:p-8 md:p-6 p-4 flex flex-col items-center gap-8"
+            className="w-full bg-neutral-800/60 border border-neutral-700/80 rounded-2xl lg:p-8 md:p-6 p-4 flex flex-col items-center gap-8 shadow-xl"
         >
-            <HexAlphaColorPicker
-                color={color}
-                onChange={setColor}
-                style={{ width: "100%", height: "300px" }}
-            />
-            <div className="w-full flex flex-col md:flex-row gap-8 justify-between items-center">
-                <ColorInfo color={color} setColor={setColor} />
-                <ColorPreview color={color} />
+            {/* Pickers */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+                {/* Primary */}
+                <div className="flex flex-col gap-4 items-center w-full">
+                    <h3 className="text-neutral-300 font-semibold">Primary Color</h3>
+                    <HexAlphaColorPicker
+                        color={color}
+                        onChange={setColor}
+                        style={{ width: "100%", height: "220px" }}
+                    />
+                    <div className="flex items-center gap-3 w-full justify-between">
+                        <div
+                            className="w-10 h-10 rounded-md border border-neutral-600"
+                            style={{ backgroundColor: color }}
+                        />
+                        <div
+                            className="flex-1 bg-neutral-700 text-white text-sm rounded-md px-2 py-1 cursor-pointer text-center"
+                            onClick={() => handleCopy(color)}
+                        >
+                            {copied && copiedValue === color ? "Copied!" : color}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Secondary */}
+                <div className="flex flex-col gap-4 items-center w-full">
+                    <h3 className="text-neutral-300 font-semibold">Secondary Color</h3>
+                    <HexAlphaColorPicker
+                        color={secondColor}
+                        onChange={setSecondColor}
+                        style={{ width: "100%", height: "220px" }}
+                    />
+                    <div className="flex items-center gap-3 w-full justify-between">
+                        <div
+                            className="w-10 h-10 rounded-md border border-neutral-600"
+                            style={{ backgroundColor: secondColor }}
+                        />
+                        <div
+                            className="flex-1 bg-neutral-700 text-white text-sm rounded-md px-2 py-1 cursor-pointer text-center"
+                            onClick={() => handleCopy(secondColor)}
+                        >
+                            {copied && copiedValue === secondColor ? "Copied!" : secondColor}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="w-full flex flex-col gap-4 items-center">
+
+            {/* Actions */}
+            <div className="w-full flex flex-wrap gap-4 justify-center">
                 <button
-                    onClick={addColorToPalette}
+                    onClick={() => addColorToPalette(color)}
                     disabled={palette.length >= 5 || palette.includes(color)}
                     className="flex items-center gap-2 bg-neutral-700 hover:bg-neutral-600 disabled:bg-neutral-800 disabled:text-neutral-500 disabled:cursor-not-allowed text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200"
                 >
-                    <FaPlus size={18} /> Add to Palette
+                    <FaPlus size={18} /> Add Primary
                 </button>
-                {palette.length > 0 && (
-                    <div className="w-full flex flex-col gap-2 items-center">
-                        <h3 className="text-neutral-300 font-semibold">Current Palette</h3>
-                        <div className="flex flex-wrap gap-2 items-center justify-center">
-                            <AnimatePresence>
-                                {palette.map((c) => (
-                                    <motion.div
-                                        key={c}
-                                        layout
-                                        initial={{ opacity: 0, scale: 0.5 }}
-                                        animate={{ opacity: 1, scale: 1 }}
-                                        exit={{ opacity: 0, scale: 0.5 }}
-                                        className="relative group"
-                                    >
-                                        <div
-                                            className="w-12 h-12 rounded-lg cursor-pointer"
-                                            style={{ backgroundColor: c }}
-                                            onClick={() => handleCopy(c)}
-                                        >
-                                            <div className="w-full h-full flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity">
-                                                <AnimatePresence>
-                                                    {copied && copiedColor === c ? (
-                                                        <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
-                                                            <FaCheck size={20} className="text-green-400" />
-                                                        </motion.div>
-                                                    ) : (
-                                                        <FaRegCopy size={20} />
-                                                    )}
-                                                </AnimatePresence>
-                                            </div>
-                                        </div>
-                                        <button
-                                            onClick={() => removeColorFromPalette(c)}
-                                            className="absolute -top-1 -right-1 bg-red-500 rounded-full p-0.5 text-white opacity-0 group-hover:opacity-100 transition-opacity"
-                                        >
-                                            <FaRegTrashCan size={12} />
-                                        </button>
-                                    </motion.div>
-                                ))}
-                            </AnimatePresence>
-                        </div>
-                    </div>
-                )}
+                <button
+                    onClick={() => addColorToPalette(secondColor)}
+                    disabled={palette.length >= 5 || palette.includes(secondColor)}
+                    className="flex items-center gap-2 bg-neutral-700 hover:bg-neutral-600 disabled:bg-neutral-800 disabled:text-neutral-500 disabled:cursor-not-allowed text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200"
+                >
+                    <FaPlus size={18} /> Add Secondary
+                </button>
+                <button
+                    onClick={addGradient}
+                    className="flex items-center gap-2 bg-gradient-to-r from-neutral-700 to-neutral-600 hover:from-neutral-600 hover:to-neutral-500 text-white font-semibold py-2 px-4 rounded-lg transition-all duration-200"
+                >
+                    <FaPlus size={18} /> Create Gradient
+                </button>
             </div>
+
+            {/* Palette Section */}
+            {palette.length > 0 && (
+                <div className="w-full flex flex-col gap-2 items-center">
+                    <h3 className="text-neutral-300 font-semibold">Current Palette</h3>
+                    <div className="flex flex-wrap gap-2 items-center justify-center">
+                        <AnimatePresence>
+                            {palette.map((c) => (
+                                <motion.div
+                                    key={c}
+                                    layout
+                                    initial={{ opacity: 0, scale: 0.5 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.5 }}
+                                    className="relative group"
+                                >
+                                    <div
+                                        className="w-12 h-12 rounded-lg cursor-pointer shadow-md"
+                                        style={{ backgroundColor: c }}
+                                        onClick={() => handleCopy(c)}
+                                    >
+                                        <div className="w-full h-full flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity">
+                                            <AnimatePresence>
+                                                {copied && copiedValue === c ? (
+                                                    <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
+                                                        <FaCheck size={20} className="text-green-400" />
+                                                    </motion.div>
+                                                ) : (
+                                                    <FaRegCopy size={20} className="text-white" />
+                                                )}
+                                            </AnimatePresence>
+                                        </div>
+                                    </div>
+                                    <button
+                                        onClick={() => removeColorFromPalette(c)}
+                                        className="absolute -top-1 -right-1 bg-red-500 rounded-full p-1 cursor-pointer text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                                    >
+                                        <FaRegTrashCan size={12} />
+                                    </button>
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </div>
+                </div>
+            )}
+
+            {/* Gradient Section */}
+            {gradients.length > 0 && (
+                <div className="w-full flex flex-col gap-2 items-center">
+                    <h3 className="text-neutral-300 font-semibold">Generated Gradients</h3>
+                    <div className="flex flex-wrap gap-3 items-center justify-center">
+                        <AnimatePresence>
+                            {gradients.map((g) => (
+                                <motion.div
+                                    key={g}
+                                    layout
+                                    initial={{ opacity: 0, scale: 0.8 }}
+                                    animate={{ opacity: 1, scale: 1 }}
+                                    exit={{ opacity: 0, scale: 0.8 }}
+                                    className="relative group w-40 h-16 rounded-lg shadow-md cursor-pointer flex items-center justify-center"
+                                    style={{ background: g }}
+                                    onClick={() => handleCopy(g)}
+                                >
+                                    <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        {copied && copiedValue === g ? (
+                                            <FaCheck size={20} className="text-green-400" />
+                                        ) : (
+                                            <FaRegCopy size={20} className="text-white" />
+                                        )}
+                                    </div>
+                                    <button
+                                        onClick={() => removeGradient(g)}
+                                        className="absolute -top-1 -right-1 bg-red-500 rounded-full p-1 cursor-pointer text-white opacity-0 group-hover:opacity-100 transition-opacity"
+                                    >
+                                        <FaRegTrashCan size={12} />
+                                    </button>
+                                </motion.div>
+                            ))}
+                        </AnimatePresence>
+                    </div>
+                </div>
+            )}
         </motion.div>
     );
 }
@@ -1064,6 +1168,156 @@ function ImageColorExtractor() {
     );
 }
 
+function ColorCodeConverter() {
+    const [inputCode, setInputCode] = useState("");
+    const [outputType, setOutputType] = useState("hex");
+    const [result, setResult] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+    const handleConvert = async () => {
+        if (!inputCode.trim()) {
+            setResult("Enter a valid code");
+            return;
+        }
+
+        setLoading(true);
+        setError(null);
+        setResult("");
+
+        const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+        if (!apiKey) {
+            setError("API key is missing.");
+            setLoading(false);
+            return;
+        }
+
+        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+
+        const payload = {
+            contents: [
+                {
+                    parts: [
+                        {
+                            text: `You are a color code converter.
+                                Input: ${inputCode}
+                                Target type: ${outputType}.
+                                Rules:
+                                1. First check what type of code the input is (hex, rgb, rgba, hsl, hsla, css-gradient, tailwind-gradient).
+                                2. If input and output types are the same, return exactly "Input and Output are same".
+                                3. If the input code is invalid, return exactly "Enter a valid code".
+                                4. Tailwind Gradient and CSS Gradient must only be processed if the input itself is already a gradient type (e.g. "bg-gradient-to-r from-red-500 to-blue-500" or "linear-gradient(...)"). Otherwise return "Enter a valid gradient class".
+                                5. Output must be a plain string containing only the converted code. Do not return JSON, arrays, or extra formatting.
+                                6. Trim all whitespace.`,
+                        },
+                    ],
+                },
+            ],
+        };
+
+        try {
+            const response = await fetch(apiUrl, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload),
+            });
+
+            if (!response.ok) {
+                throw new Error(`API request failed with status ${response.status}`);
+            }
+
+            const data = await response.json();
+            let textResponse = data.candidates?.[0]?.content?.parts?.[0]?.text?.trim() || "";
+
+            textResponse = textResponse.replace(/^(\{.*"result"\s*:\s*")|("\s*\})$/g, "");
+            textResponse = textResponse.replace(/^\[|\]$/g, "");
+            textResponse = textResponse.replace(/^"+|"+$/g, "");
+
+            if (textResponse) {
+                setResult(textResponse);
+            } else {
+                setError("No result returned from API.");
+            }
+        } catch (err) {
+            console.error(err);
+            setError("Something went wrong.");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return (
+        <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="w-full flex items-center justify-center text-neutral-200 p-7"
+        >
+            <motion.div
+                initial={{ scale: 0.9, opacity: 0 }}
+                whileInView={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.4 }}
+                viewport={{ once: true }}
+                className="w-full max-w-md bg-neutral-900 rounded-2xl shadow-xl border border-neutral-700 p-6 flex flex-col gap-6"
+            >
+                <h1 className="text-2xl font-bold text-center">Color Code Converter</h1>
+
+                <input
+                    type="text"
+                    placeholder="Enter color code"
+                    value={inputCode}
+                    onChange={(e) => setInputCode(e.target.value)}
+                    className="w-full px-3 py-2 rounded-lg bg-neutral-800 text-neutral-100 border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-neutral-500 transition"
+                />
+
+                <select
+                    value={outputType}
+                    onChange={(e) => setOutputType(e.target.value)}
+                    className="w-full px-3 py-2 rounded-lg bg-neutral-800 text-neutral-100 border border-neutral-700 focus:outline-none focus:ring-2 focus:ring-neutral-500 transition"
+                >
+                    <option value="hex">Hex / Hexa</option>
+                    <option value="rgb">RGB</option>
+                    <option value="rgba">RGBA</option>
+                    <option value="hsl">HSL</option>
+                    <option value="hsla">HSLA</option>
+                    <option value="tailwind-gradient">Tailwind Gradient Classes</option>
+                    <option value="css-gradient">CSS Gradient</option>
+                </select>
+
+                <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={handleConvert}
+                    disabled={loading}
+                    className="flex w-full py-2 rounded-lg items-center justify-center font-semibold bg-neutral-700 hover:bg-neutral-600 transition disabled:opacity-50"
+                >
+                    {loading ?
+                        <div
+                            class="w-5 h-5 border-2 border-t-black border-neutral-100 rounded-full animate-spin"
+                        ></div>
+                        : "Convert"
+                    }
+                </motion.button>
+
+                {error && (
+                    <div className="text-red-500 text-center text-sm">{error}</div>
+                )}
+
+                {result && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        className="w-full rounded-lg bg-neutral-800 p-3 text-center font-mono border border-neutral-700"
+                    >
+                        {result}
+                    </motion.div>
+                )}
+            </motion.div>
+        </motion.div>
+    );
+}
+
+
+
 
 
 //--------------------|‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾‾|--------------------//
@@ -1077,7 +1331,8 @@ export default function Colors() {
         { id: "blocks", label: "Blocks", icon: <IoColorPalette size={20} /> },
         { id: "palettes", label: "Palettes", icon: <HiMiniSwatch size={20} /> },
         { id: "gradients", label: "Gradients", icon: <FaLayerGroup size={20} /> },
-        { id: "extractor", label: "Extractor", icon: <MdOutlineImageSearch size={20} /> }
+        { id: "extractor", label: "Extractor", icon: <MdOutlineImageSearch size={20} /> },
+        { id: "convertor", label: "Convertor", icon: <FaArrowsRotate size={20} /> },
     ];
 
     const renderContent = () => {
@@ -1092,6 +1347,8 @@ export default function Colors() {
                 return <GradientsBrowser />;
             case "extractor":
                 return <ImageColorExtractor />;
+            case "convertor":
+                return <ColorCodeConverter />;
             default:
                 return null;
         }
