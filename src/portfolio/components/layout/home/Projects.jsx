@@ -16,10 +16,10 @@ import { GoArrowUpRight } from "react-icons/go";
 
 //----------------------------PROJECTS--------------------------//
 // Influera
-import Inf from '../../../assets/images/projects/Websites/influera.webp';
+import Inf from '../../../../assets/images/projects/Websites/influera.webp';
 
 // Medishare
-import Med from '../../../assets/images/projects/Websites/mediShare.webp';
+import Med from '../../../../assets/images/projects/Websites/mediShare.webp';
 
 
 

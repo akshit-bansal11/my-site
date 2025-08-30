@@ -9,11 +9,11 @@ import { CgFigma } from "react-icons/cg";
 import { VscVscode } from "react-icons/vsc";
 
 // SVG Imports
-import Grok from "../assets/icons/grok.svg"
-import Firebase from "../assets/icons/firebaseStudio.svg"
-import Napkin from "../assets/icons/napkin.svg"
-import Trae from "../assets/icons/trae.svg"
-import Recraft from "../assets/icons/recraft.svg"
+import Grok from "../../assets/icons/grok.svg"
+import Firebase from "../../assets/icons/firebaseStudio.svg"
+import Napkin from "../../assets/icons/napkin.svg"
+import Trae from "../../assets/icons/trae.svg"
+import Recraft from "../../assets/icons/recraft.svg"
 
 
 

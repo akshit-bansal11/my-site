@@ -12,13 +12,13 @@ import { motion } from "framer-motion";
 
 //--------------------|       ICONS        |--------------------//
 import { FaCircle, FaLocationDot, FaArrowDownLong } from "react-icons/fa6";
-import Gmail from "../../../assets/icons/gmail.svg";
+import Gmail from "../../../../assets/icons/gmail.svg";
 
 //--------------------|       FILES        |--------------------//
 import Resume from "/akshit_bansal.pdf?url";
 
 //--------------------|       IMAGES       |--------------------//
-import animeChar from "../../../assets/images/animeChar.svg";
+import animeChar from "../../../../assets/images/animeChar.svg";
 
 
 

@@ -3,10 +3,10 @@ import React, { useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-import NavBar from './components/layout/NavBar';
-import Home from './pages/Home';
-import Projects from './pages/Projects';
-import Colors from './pages/Colors';
+import NavBar from './portfolio/components/layout/NavBar';
+import Home from './portfolio/pages/Home';
+import Projects from './portfolio/pages/Projects';
+import Colors from './color-space/Colors';
 
 // ---------------- SCROLL TO TOP ----------------
 function ScrollToTop() {

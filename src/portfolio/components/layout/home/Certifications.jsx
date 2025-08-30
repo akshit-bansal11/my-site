@@ -12,13 +12,13 @@ import ScrollSectionHeading from '../../common/headings/ScrollSectionHeading'
 import SkillBadge from "../../common/cards/SkillBadge";
 
 // LinkedIn + Microsoft
-import ceisd from '../../../assets/images/certificates/ceisd.webp';
-import ceiga from '../../../assets/images/certificates/ceiga.webp';
+import ceisd from '../../../../assets/images/certificates/ceisd.webp';
+import ceiga from '../../../../assets/images/certificates/ceiga.webp';
 
 // HackerRank
-import sqlbhack from '../../../assets/images/certificates/sqlbhack.webp';
-import jsbhack from '../../../assets/images/certificates/jsbhack.webp';
-import cssbhack from '../../../assets/images/certificates/cssbhack.webp';
+import sqlbhack from '../../../../assets/images/certificates/sqlbhack.webp';
+import jsbhack from '../../../../assets/images/certificates/jsbhack.webp';
+import cssbhack from '../../../../assets/images/certificates/cssbhack.webp';
 
 import { SiCplusplus, SiCoursera } from "react-icons/si";
 import { FaExternalLinkAlt } from "react-icons/fa";

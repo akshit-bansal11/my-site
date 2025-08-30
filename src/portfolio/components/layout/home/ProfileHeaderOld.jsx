@@ -13,10 +13,10 @@ import {
     FaHackerrank,
 } from "react-icons/fa6";
 import { SiLeetcode } from "react-icons/si";
-import Gmail from "../../../assets/icons/gmail.svg";
+import Gmail from "../../../../assets/icons/gmail.svg";
 
 // Images
-import Pfp from "../../../assets/images/pfp.webp";
+import Pfp from "../../../../assets/images/pfp.webp";
 import Resume from "/akshit_bansal.pdf?url";
 
 // Constants
