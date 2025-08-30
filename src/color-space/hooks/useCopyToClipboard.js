@@ -1,24 +1,24 @@
-import React from "react";
 import { useState, useCallback } from "react";
 
 export const useCopyToClipboard = () => {
     const [copied, setCopied] = useState(false);
 
-    const copy = useCallback((text) => {
-        const textArea = document.createElement("textarea");
-        textArea.value = text;
-        textArea.style.position = "absolute";
-        textArea.style.left = "-9999px";
-        document.body.appendChild(textArea);
-        textArea.select();
+    const copy = useCallback(async (text) => {
+        if (!navigator?.clipboard) {
+            console.warn("Clipboard not supported");
+            return false;
+        }
+
         try {
-            document.execCommand('copy');
+            await navigator.clipboard.writeText(text);
             setCopied(true);
             setTimeout(() => setCopied(false), 1500);
-        } catch (err) {
-            console.error('Failed to copy text: ', err);
+            return true;
+        } catch (error) {
+            console.error("Failed to copy text: ", error);
+            setCopied(false);
+            return false;
         }
-        document.body.removeChild(textArea);
     }, []);
 
     return [copied, copy];
