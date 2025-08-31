@@ -7,7 +7,7 @@ export const useCopyToClipboard = () => {
         if (!navigator?.clipboard) {
             console.warn("Clipboard not supported");
             return false;
-        }
+        };
 
         try {
             await navigator.clipboard.writeText(text);
@@ -18,7 +18,7 @@ export const useCopyToClipboard = () => {
             console.error("Failed to copy text: ", error);
             setCopied(false);
             return false;
-        }
+        };
     }, []);
 
     return [copied, copy];

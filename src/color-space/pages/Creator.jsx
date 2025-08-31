@@ -9,15 +9,19 @@ import { FaCheck, FaPlus, FaRegCopy, FaRegTrashCan } from "react-icons/fa6";
 
 
 //--------------------|        HOOKS        |--------------------//
-import { useCopyToClipboard } from "../hooks/useCopyToClipboard";
+import { useCopyToClipboard } from "../hooks/useCopyToClipboard.js";
 
 
-//--------------------|        UTILS        |--------------------//
+//--------------------|     COMPONENT/S     |--------------------//
+import ColorBlock from "../shared/ColorBlock.jsx"
+
+
+//--------------------|     INLINE UTILS    |--------------------//
 const createGradient = (c1, c2) => `linear-gradient(135deg, ${c1}, ${c2})`;
 const isDuplicate = (list, item) => list.includes(item);
 
 
-//--------------------|        HOOKS        |--------------------//
+//--------------------|     INLINE HOOKS    |--------------------//
 const usePalette = (max = 5) => {
     const [palette, setPalette] = useState([]);
 
@@ -96,10 +100,7 @@ const ColorPicker = ({ label, color, setColor, copied, copiedValue, onCopy }) =>
                 style={{ width: "100%", height: "220px" }}
             />
             <div className="flex items-center gap-3 w-full justify-between">
-                <div
-                    className="w-10 h-10 rounded-md border border-neutral-600"
-                    style={{ backgroundColor: color }}
-                />
+                <ColorBlock iconSize={`text-lg`} className={'w-10 rounded-sm'} color={color} />
                 <input
                     type="text"
                     value={inputValue}
@@ -134,10 +135,10 @@ const PaletteItem = ({ c, copied, copiedValue, onCopy, onRemove }) => (
                 <AnimatePresence>
                     {copied && copiedValue === c ? (
                         <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} exit={{ scale: 0 }}>
-                            <FaCheck size={20} className="text-green-400" />
+                            <FaCheck  className="text-green-400" />
                         </motion.div>
                     ) : (
-                        <FaRegCopy size={20} className="text-white" />
+                        <FaRegCopy  className="text-white" />
                     )}
                 </AnimatePresence>
             </div>
@@ -164,9 +165,9 @@ const GradientItem = ({ g, copied, copiedValue, onCopy, onRemove }) => (
     >
         <div className="absolute inset-0 flex items-center justify-center bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity">
             {copied && copiedValue === g ? (
-                <FaCheck size={20} className="text-green-400" />
+                <FaCheck  className="text-green-400" />
             ) : (
-                <FaRegCopy size={20} className="text-white" />
+                <FaRegCopy  className="text-white" />
             )}
         </div>
         <button

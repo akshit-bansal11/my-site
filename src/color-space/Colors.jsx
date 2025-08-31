@@ -24,12 +24,12 @@ export default function Colors() {
     const [activeTab, setActiveTab] = useState("creator");
 
     const tabs = [
-        { id: "creator", label: "Creator", icon: <FaDroplet size={20} /> },
-        { id: "blocks", label: "Blocks", icon: <IoColorPalette size={20} /> },
-        { id: "palettes", label: "Palettes", icon: <HiMiniSwatch size={20} /> },
-        { id: "gradients", label: "Gradients", icon: <FaLayerGroup size={20} /> },
-        { id: "extractor", label: "Extractor", icon: <MdOutlineImageSearch size={20} /> },
-        { id: "convertor", label: "Convertor", icon: <FaArrowsRotate size={20} /> },
+        { id: "creator", label: "Creator", icon: <FaDroplet className="text-xl" /> },
+        { id: "blocks", label: "Blocks", icon: <IoColorPalette className="text-xl" /> },
+        { id: "palettes", label: "Palettes", icon: <HiMiniSwatch className="text-xl" /> },
+        { id: "gradients", label: "Gradients", icon: <FaLayerGroup className="text-xl" /> },
+        { id: "extractor", label: "Extractor", icon: <MdOutlineImageSearch className="text-xl" /> },
+        { id: "convertor", label: "Convertor", icon: <FaArrowsRotate className="text-xl" /> },
     ];
 
     const renderContent = () => {

@@ -82,10 +82,10 @@ function ColorPalette({ colors, name, Icon }) {
                                         exit={{ opacity: 0, y: -10 }}
                                         className="flex flex-col items-center gap-1"
                                     >
-                                        <FaCheck size={20} className="text-green-400" />
+                                        <FaCheck  className="text-green-400" />
                                     </motion.div>
                                 ) : (
-                                    <FaRegCopy size={20} />
+                                    <FaRegCopy  />
                                 )}
                             </AnimatePresence>
                         </div>
