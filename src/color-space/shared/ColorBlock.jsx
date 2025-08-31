@@ -13,13 +13,13 @@ import { useCopyToClipboard } from "../hooks/useCopyToClipboard";
 
 
 //--------------------|    MAIN RENDER     |--------------------//
-export default function ColorBlock({ color, className, iconSize }) {
+export default function ColorBlock({ color, className, iconSize, hover }) {
     const [copied, copy] = useCopyToClipboard();
     return (
         <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            whileHover={{ scale: 1.05, zIndex: 10 }}
+            whileHover={hover}
             className={`relative aspect-square overflow-hidden cursor-pointer group 
                 ${className}
             `}
