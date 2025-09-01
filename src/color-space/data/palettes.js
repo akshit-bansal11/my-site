@@ -6,6 +6,9 @@ import { TbOlympics } from "react-icons/tb";
 export const palettes = [
     // 3-Color
     { colors: ["#e74c3c", "#f39c12", "#f1c40f"], category: "3-color" },
+    { colors: ["#50207A", "#FF48B9", "#12CE6A"], category: "3-color" },
+    { colors: ["#414A37", "#99744A", "#DBC2A6"], category: "3-color" },
+    { colors: ["#50207A", "#D6B9FC", "#838CE5"], category: "3-color" },
     { colors: ["#e74c3c", "#f39c12", "#f1c40f"], category: "3-color" },
     { colors: ["#10367D", "#EBEBEB", "#74B4D9"], category: "3-color" },
     { colors: ["#05614B", "#020E0E", "#01DE82"], category: "3-color" },
