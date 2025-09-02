@@ -14,6 +14,8 @@ import { useCopyToClipboard } from "../hooks/useCopyToClipboard.js";
 
 //--------------------|     COMPONENT/S     |--------------------//
 import ColorBlock from "../shared/ColorBlock.jsx"
+import Input from "../shared/Input.jsx";
+import Label from "../shared/Label.jsx";
 
 
 //--------------------|     INLINE UTILS    |--------------------//
@@ -22,7 +24,7 @@ const isDuplicate = (list, item) => list.includes(item);
 
 
 //--------------------|     INLINE HOOKS    |--------------------//
-const usePalette = (max = 5) => {
+const usePalette = (max = 10) => {
     const [palette, setPalette] = useState([]);
 
     const addColor = (c) => {
@@ -72,7 +74,7 @@ const isValidColor = (value) => {
         /^hsla?\((\s*\d+\s*,){2,3}\s*(\d+(\.\d+)?%?)\)$/i.test(value);
 };
 
-const ColorPicker = ({ label, color, setColor, copied, copiedValue, onCopy }) => {
+const ColorPicker = ({ label, color, setColor }) => {
     const [inputValue, setInputValue] = useState(color);
     const [error, setError] = useState(false);
 
@@ -88,9 +90,13 @@ const ColorPicker = ({ label, color, setColor, copied, copiedValue, onCopy }) =>
         }
     };
 
+    const inputId = label.replace(/\s+/g, '-').toLowerCase();
+
     return (
         <div className="flex flex-col gap-4 items-center w-full">
-            <h3 className="text-neutral-300 font-semibold">{label}</h3>
+            <Label htmlFor={inputId} className="font-semibold text-neutral-300 !text-lg">
+                {label}
+            </Label>
             <HexAlphaColorPicker
                 color={color}
                 onChange={(val) => {
@@ -101,7 +107,8 @@ const ColorPicker = ({ label, color, setColor, copied, copiedValue, onCopy }) =>
             />
             <div className="flex items-center gap-3 w-full justify-between">
                 <ColorBlock iconSize={`text-lg`} className={'w-10 rounded-sm'} color={color} />
-                <input
+                <Input
+                    id={inputId}
                     type="text"
                     value={inputValue}
                     onChange={handleInputChange}
@@ -202,17 +209,11 @@ export default function Creator() {
                     label="Primary Color"
                     color={color}
                     setColor={setColor}
-                    copied={copied}
-                    copiedValue={copiedValue}
-                    onCopy={handleCopy}
                 />
                 <ColorPicker
                     label="Secondary Color"
                     color={secondColor}
                     setColor={setSecondColor}
-                    copied={copied}
-                    copiedValue={copiedValue}
-                    onCopy={handleCopy}
                 />
             </div>
 
