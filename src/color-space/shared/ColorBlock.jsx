@@ -3,17 +3,12 @@ import React from "react";
 import { motion } from "framer-motion";
 
 
-//--------------------|        HOOKS       |--------------------//
-import { useCopyToClipboard } from "../hooks/useCopyToClipboard";
-
-
 //--------------------|     COMPONENT/S     |--------------------//
 import CopyButton from "./CopyButton";
 
 
 //--------------------|    MAIN RENDER     |--------------------//
 export default function ColorBlock({ color, className, iconSize, hover }) {
-    const [copied, copy] = useCopyToClipboard();
 
     return (
         <motion.div
@@ -24,9 +19,8 @@ export default function ColorBlock({ color, className, iconSize, hover }) {
                 ${className}
             `}
             style={{ backgroundColor: color }}
-            onClick={() => copy(color)}
         >
-            <CopyButton copied={copied} iconSize={iconSize} />
+            <CopyButton text={color} iconSize={iconSize} isHover />
         </motion.div>
     );
 }

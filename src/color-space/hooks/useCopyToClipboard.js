@@ -1,5 +1,7 @@
+//--------------------| DEPENDENCIES |--------------------//
 import { useState, useCallback } from "react";
 
+//--------------------| MAIN EXPORT |--------------------//
 export const useCopyToClipboard = () => {
     const [copied, setCopied] = useState(false);
 

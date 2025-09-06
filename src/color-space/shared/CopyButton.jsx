@@ -7,10 +7,30 @@ import { AnimatePresence, motion } from "framer-motion";
 import { FaCheck, FaRegCopy } from "react-icons/fa6";
 
 
+//--------------------|        HOOKS       |--------------------//
+import { useCopyToClipboard } from "../hooks/useCopyToClipboard";
+
+
 //--------------------|    MAIN RENDER     |--------------------//
-export default function CopyButton({ copied, iconSize }) {
+export default function CopyButton({ text, iconSize, isHover }) {
+
+    const [copied, copy] = useCopyToClipboard();
+
+    const handleCopy = () => {
+        if (text) copy(text);
+    };
+
     return (
-        <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center flex-col gap-2 p-2">
+        <button
+            onClick={handleCopy}
+            type="button"
+            className={`absolute inset-0 bg-black/30 cursor-pointer flex items-center justify-center flex-col gap-2
+                ${isHover
+                    ? `opacity-0 group-hover:opacity-100 transition-opacity`
+                    : `opacity-100`
+                }
+            `}
+        >
             <AnimatePresence mode="popLayout">
                 {copied ? (
                     <motion.div
@@ -32,6 +52,6 @@ export default function CopyButton({ copied, iconSize }) {
                     </motion.div>
                 )}
             </AnimatePresence>
-        </div>
+        </button>
     );
 }

@@ -29,7 +29,7 @@ export default function Colors() {
         { id: "palettes", label: "Palettes", icon: <HiMiniSwatch className="text-xl" /> },
         { id: "gradients", label: "Gradients", icon: <FaLayerGroup className="text-xl" /> },
         { id: "extractor", label: "Extractor", icon: <MdOutlineImageSearch className="text-xl" /> },
-        { id: "convertor", label: "Convertor (beta)", icon: <FaArrowsRotate className="text-xl" /> },
+        { id: "convertor", label: "Convertor", icon: <FaArrowsRotate className="text-xl" /> },
     ];
 
     const renderContent = () => {

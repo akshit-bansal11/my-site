@@ -1,8 +1,9 @@
+//--------------------| ICON/S |--------------------//
 import { FaSpotify, FaAmazon, FaMeta, FaGoogle } from 'react-icons/fa6'
 import { SiIkea, SiMcdonalds, SiNetflix, SiStarbucks, SiNvidia, } from "react-icons/si";
 import { TbOlympics } from "react-icons/tb";
 
-
+//--------------------| MAIN EXPORT |--------------------//
 export const palettes = [
     // 3-Color
     { colors: ["#e74c3c", "#f39c12", "#f1c40f"], category: "3-color" },
