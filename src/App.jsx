@@ -7,7 +7,6 @@ import { motion } from 'framer-motion';
 import NavBar from './main/components/layout/NavBar';
 import Home from './main/pages/Home';
 import Projects from './main/pages/Projects';
-import Colors from './projects/color-space/Colors';
 import UsefulAiTools from './projects/tools-space/UsefulAiTools';
 
 // ---------------- SCROLL TO TOP ----------------
@@ -57,7 +56,6 @@ function AppContent() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects" element={<Projects />} />
-        <Route path="/colors" element={<Colors />} />
         <Route path="/tools/ai" element={<UsefulAiTools />} />
       </Routes>
     </motion.div>
