@@ -150,7 +150,7 @@ const projectsData = {
             description: 'A simple click counter built with React & Tailwind. Click the button to increase the count.',
             image: count,
             techStack: ['React', 'Tailwind'],
-            demoLink: 'https://counter-self-beta.vercel.app/',
+            demoLink: 'https://counter-akshit-bansal11.vercel.app/',
             githubLink: 'https://github.com/akshit-bansal11/counter/'
         },
         {
