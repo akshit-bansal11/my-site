@@ -125,21 +125,13 @@ const projectsData = {
             description: 'A simple bar clock built with React & Tailwind. Displays the current time in a unique way.',
             image: barClock,
             techStack: ['React', 'Tailwind'],
-            demoLink: 'https://akshit-bansal11.github.io/bar-clock/',
-            githubLink: 'https://bar-clock-akshit-bansal11.vercel.app/'
+            githubLink: 'https://akshit-bansal11.github.io/bar-clock/',
+            demoLink: 'https://bar-clock-akshit-bansal11.vercel.app/'
         },
         {
             type: 'small',
             title: 'Audio Visualizer',
             description: 'A Real-Time Audio Visualizer built with C# & .NET. Visualizes the audio from all sources and from any audio device connected to the system.',
-            image: code,
-            techStack: ['C#', '.NET'],
-            githubLink: 'https://github.com/akshit-bansal11/audio-visualizer'
-        },
-        {
-            type: 'small',
-            title: 'Color Picker',
-            description: 'A simple color picker tool built with React and Tailwind. Pick colors and get the code in HEX, RGB, RGBA and Tailwind formats.',
             image: code,
             techStack: ['C#', '.NET'],
             githubLink: 'https://github.com/akshit-bansal11/audio-visualizer'
