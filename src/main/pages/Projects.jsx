@@ -126,7 +126,7 @@ const projectsData = {
             image: barClock,
             techStack: ['React', 'Tailwind'],
             demoLink: 'https://akshit-bansal11.github.io/bar-clock/',
-            githubLink: 'https://barclock.vercel.app/'
+            githubLink: 'https://bar-clock-akshit-bansal11.vercel.app/'
         },
         {
             type: 'small',
