@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 
 //--------------------|        HOOKS       |--------------------//
-import { useCopyToClipboard } from "../hooks/useCopyToClipboard";
+import { useCopyToClipboard } from "../hooks/useCopyToClipboard.js";
 
 
 //--------------------|        DATA        |--------------------//
