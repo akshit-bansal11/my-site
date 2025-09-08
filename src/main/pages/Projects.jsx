@@ -31,7 +31,7 @@ import dclock from '../../assets/images/projects/Tools/dclock.webp'
 import code from '../../assets/images/projects/code.webp'
 import ipo from '../../assets/images/designs/ipo.webp'
 import ecom from '../../assets/images/designs/ecom.webp'
-import { head } from 'framer-motion/client'
+import { head, image } from 'framer-motion/client'
 
 // ──────────────────────────────────────────────
 // Animation variants for section entry
@@ -61,6 +61,15 @@ const projectsData = {
             techStack: ['Node.js', 'Express', 'HTML', 'CSS', 'JavaScript', 'Cloudinary', 'Font Awesome'],
             demoLink: 'https://influera.onrender.com/',
             githubLink: 'https://github.com/akshit-bansal11/Influera'
+        },
+        {
+            type: 'large',
+            title: 'Color Space',
+            description: "Color Space is a comprehensive, all-in-one web application designed for designers and developers. It provides a full suite of tools to create, browse, extract, and convert colors and gradients, all in one centralized hub.",
+            image: Med,
+            techStack: ['React', 'Tailwind', 'Gemini API'],
+            demoLink: "https://color-space-akshit-bansal11.vercel.app/",
+            githubLink: "https://github.com/akshit-bansal11/color-space"
         }
     ],
     games: [
@@ -260,7 +269,7 @@ const sectionConfigs = [
     {
         id: 'websites',
         heading: 'websites',
-        layout: 'flex lg:flex-row flex-col gap-2 lg:justify-around justify-center items-center',
+        layout: 'flex lg:flex-row flex-col gap-2 lg:justify-around justify-center',
         dataKey: 'websites'
     },
     {
