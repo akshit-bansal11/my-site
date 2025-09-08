@@ -97,7 +97,7 @@ const projectsData = {
             description: 'A fun and modern Memory Game built with React, Vite, Tailwind CSS, Framer Motion, and React Icons.',
             image: mem,
             techStack: ['React', 'Tailwind'],
-            demoLink: 'https://memory-game-theta-virid.vercel.app/',
+            demoLink: 'https://memory-game-akshit-bansal11.vercel.app/',
             githubLink: 'https://github.com/akshit-bansal11/memory-game'
         },
         {
@@ -169,7 +169,7 @@ const projectsData = {
             image: todo,
             techStack: ['React', 'Tailwind'],
             githubLink: 'https://github.com/akshit-bansal11/to-do-list',
-            demoLink: 'https://to-do-list-neon-chi.vercel.app/'
+            demoLink: 'https://to-do-list-akshit-bansal11.vercel.app/'
         },
         {
             type: 'small',
